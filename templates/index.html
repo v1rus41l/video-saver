@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>  <!-- Подключаем файл script.js -->
+    <title>Document</title>
+</head>
+<body>
+    <div class="container1">
+        <div class="save-video">
+            <h3>Download video online</h3><br>
+            <form action="/take_link" method="post">
+                <input name="link" id="userInput" type="text" placeholder="Paste your link here">
+                <button id="saveButton" type="button" class="btn btn-danger" onclick="findVideo()">Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="container2">
+        <a class="start-label">Your video will be here</a>
+        <iframe width="430" height="245" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <form id="downloadForm" method="POST" action="/download">
+            <button class="btn btn-success" style="display: none; margin-top: 10px" id="downloadBtn" type="submit">Download in the best resolution</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
