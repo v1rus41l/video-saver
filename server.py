@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify 
-from pytube import YouTube
+import pytube
 from urllib.error import HTTPError
 
 
@@ -32,10 +32,17 @@ def process():
 
 @app.route("/download", methods=["POST"])
 def download():
-    global link2
-    print(link2)
-    yt = YouTube(link2)
-    yt.streams.first().download()
+    global link2, link
+    # формируем адрес
+    # переводим его в нужный формат
+    youtubelink=pytube.YouTube(link)
+    # получаем ссылку на видео с самым высоким качеством
+    video=youtubelink.streams.get_highest_resolution()
+    # скачиваем видео
+    video.download()
+    # выводим результат
+    Result="Загрузка завершена"
+# если скачать не получилось
     return render_template('index.html', link=link)
 
     
